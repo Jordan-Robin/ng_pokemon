@@ -7,16 +7,19 @@
 <p *ngIf="pokemonSelected">
     Vous avez sélectionné le pokémon {{ pokemonSelected?.name }}
 </p>
+<p *ngIf="!pokemonSelected">
+    Aucun pokémon sélectionné.
+</p>
 
-<p>{{ pokemonList[0].name }}</p>
-<p>{{ pokemonList[1].name }}</p>
-<p>{{ pokemonList[2].name }}</p>
-<p>{{ pokemonList[3].name }}</p>
-<p>{{ pokemonList[4].name }}</p>
-<p>{{ pokemonList[5].name }}</p>
-<p>{{ pokemonList[6].name }}</p>
-<p>{{ pokemonList[7].name }}</p>
-<p>{{ pokemonList[8].name }}</p>
-<p>{{ pokemonList[9].name }}</p>
-<p>{{ pokemonList[10].name }}</p>
-<p>{{ pokemonList[11].name }}</p>
+<div class="container d-flex row">
+    <div *ngFor="let p of pokemonList" class="card row m-3" style="width: 30%">
+        <div class="col-6">
+            <img src="{{ p.picture }}" alt="imagePokemon" height="200" width="200">
+        </div>
+        <div class="col-6">
+            <p>{{ p.name }}</p>
+            <p>{{ p.created }}</p>
+        </div>
+    </div>
+</div>
+

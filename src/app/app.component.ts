@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from "@angular/common";
 import { POKEMONS } from "./mock-pokemon-list";
 import {Pokemon} from "./pokemon";
-import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [
+      CommonModule
+  ],
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
@@ -26,6 +29,7 @@ export class AppComponent implements OnInit {
   }*/
 
   //2e possibilité :
+  //côté template : <input type="number" #input (keyup)="selectPokemon(input.value)">
   /*selectPokemon( pokemonId: string ) {
     const id = +pokemonId;
     console.log(`Vous avez cliqué sur le pokémon ${this.pokemonList[id].name}`);
