@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let p of pokemonList" class="card m-2 col-md-3 col-sm-5" pkmnBorderCard>
+            <div class="row">
+                <div class="col">
+                    <img [src]="p.picture" alt="imagePokemon" class="card-img">
+                </div>
+                <div class="col card-text">
+                    <p><strong>{{ p.name }}</strong></p>
+                    <p class="my-1">{{ p.created | date: 'EEEE dd MMMM yyyy à HH:mm' }}</p>
+                    <button
+                            *ngFor="let type of p.types"
+                            class="{{ type | pokemonTypeColor }}"
+                    >
+                        {{ type }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

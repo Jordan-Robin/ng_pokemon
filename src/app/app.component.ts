@@ -1,39 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from "@angular/common";
-import { POKEMONS } from "./mock-pokemon-list";
-import {Pokemon} from "./pokemon";
+import { Component } from '@angular/core';
+import {CommonModule, NgOptimizedImage} from "@angular/common";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-      CommonModule
+    CommonModule,
+    NgOptimizedImage,
+    RouterOutlet
   ],
   templateUrl: 'app.component.html'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  pokemonList: Pokemon[] = POKEMONS; //pour envoi au template
-
+  /*
   pokemonSelected: Pokemon | undefined; //pokemon sélectionné par l'utilisateur
-
-  ngOnInit() {
-    console.log( this.pokemonList );
-  }
 
   //1e possibilité de récupération d'un pokémon côté template
   //côté template : <input type="number" (click)="selectPokemon($event)">
-  /*selectPokemon(event: MouseEvent) {
+  selectPokemon(event: MouseEvent) {
     const index: number = +( event.target as HTMLInputElement ).value;
     console.log(`Vous avez cliqué sur le pokémon ${this.pokemonList[index].name}`);
-  }*/
+  }
 
   //2e possibilité :
   //côté template : <input type="number" #input (keyup)="selectPokemon(input.value)">
-  /*selectPokemon( pokemonId: string ) {
+  selectPokemon( pokemonId: string ) {
     const id = +pokemonId;
     console.log(`Vous avez cliqué sur le pokémon ${this.pokemonList[id].name}`);
-  }*/
+  }
 
   //Mais on veut afficher un message d'erreur si user saisit un chiffre > index
   //Et on veut que l'utilisateur puisse commencer sa saisit à partir de 1, et non 0
@@ -48,5 +44,5 @@ export class AppComponent implements OnInit {
       this.pokemonSelected = undefined;
     }
   }
-
+  */
 }

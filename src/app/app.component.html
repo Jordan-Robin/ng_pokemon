@@ -1,25 +1,22 @@
-<h1>Liste de Pokémons</h1>
-<input
-    #input
-    (keyup.enter)="selectPokemon(input.value)"
-    type="number"
->
-<p *ngIf="pokemonSelected">
-    Vous avez sélectionné le pokémon {{ pokemonSelected?.name }}
-</p>
-<p *ngIf="!pokemonSelected">
-    Aucun pokémon sélectionné.
-</p>
-
-<div class="container d-flex row">
-    <div *ngFor="let p of pokemonList" class="card row m-3" style="width: 30%">
-        <div class="col-6">
-            <img src="{{ p.picture }}" alt="imagePokemon" height="200" width="200">
-        </div>
-        <div class="col-6">
-            <p>{{ p.name }}</p>
-            <p>{{ p.created }}</p>
-        </div>
-    </div>
+<div class="mx-auto" style="width: 30%">
+    <h1>Liste de Pokémons</h1>
+    <!--
+    <input
+        #input
+        (keyup.enter)="selectPokemon(input.value)"
+        type="number"
+    >
+    <p *ngIf="pokemonSelected">
+        Vous avez sélectionné le pokémon {{ pokemonSelected?.name }}
+    </p>
+    <p *ngIf="!pokemonSelected">
+        Aucun pokémon sélectionné.
+    </p>
+    -->
 </div>
+
+<router-outlet></router-outlet>
+
+
+
 
