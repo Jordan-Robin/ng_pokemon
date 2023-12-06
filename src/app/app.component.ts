@@ -25,7 +25,7 @@ export class AppComponent {
   }
 
   //2e possibilité :
-  //côté template : <input type="number" #input (keyup)="selectPokemon(input.value)">
+  //côté template : <input type="number" #input (keyup.enter)="selectPokemon(input.value)">
   selectPokemon( pokemonId: string ) {
     const id = +pokemonId;
     console.log(`Vous avez cliqué sur le pokémon ${this.pokemonList[id].name}`);

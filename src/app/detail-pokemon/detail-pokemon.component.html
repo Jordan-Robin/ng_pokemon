@@ -1,1 +1,46 @@
-<p>detail-pokemon works!</p>
+<div *ngIf="pokemon" class="row mt-3">
+    <div class="col-sm-12 col-md-8 offset-md-2">
+        <h2 class="my-4 text-center">{{ pokemon.name }}</h2>
+        <div class="card">
+            <div class="row">
+                <div class="col-3">
+                    <img class="card-img" [src]="pokemon.picture">
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <td>Nom</td>
+                                <td><strong>{{ pokemon.name }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Points de vie</td>
+                                <td><strong>{{ pokemon.hp }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Dégâts</td>
+                                <td><strong>{{ pokemon.cp }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Types</td>
+                                <td>
+                                    <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Date de création</td>
+                                <td><em>{{ pokemon.created | date:"dd/MM/yyyy" }}</em></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <a class="btn btn-warning" (click)="goToPokemonList()">Retour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h4 *ngIf='!pokemon' class="text-center">Aucun pokémon à afficher !</h4>
