@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import {POKEMONS} from "../mock-pokemon-list";
+import {Component, OnInit} from '@angular/core';
 import {BorderCardDirective} from "../border-card.directive";
 import {DatePipe, CommonModule} from "@angular/common";
 import {PokemonTypeColorPipe} from "../pokemon-type-color.pipe";
 import {Pokemon} from "../pokemon";
 import {Router} from "@angular/router";
+import {PokemonService} from "../pokemon/pokemon.service";
 
 @Component({
   selector: 'app-list-pokemon',
@@ -17,11 +17,15 @@ import {Router} from "@angular/router";
   ],
   templateUrl: './list-pokemon.component.html'
 })
-export class ListPokemonComponent {
+export class ListPokemonComponent implements OnInit {
 
-  constructor( private router: Router ) {}
+  pokemonList: Pokemon[];
 
-  pokemonList: Pokemon[] = POKEMONS; //pour envoi au template
+  constructor( private router: Router, private pokemonService: PokemonService ) {}
+
+  ngOnInit() {
+    this.pokemonList = this.pokemonService.getPokemonList();
+  }
 
   goToPokemon( pokemon: Pokemon ) {
     this.router.navigate(["/pokemon", pokemon.id])
