@@ -1,7 +1,8 @@
 <form *ngIf="pokemon" (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
+    <!-- ngForm ci-dessus représente le formulaire au niveau global -->
     <div class="row">
-        <div class="col-sm-8 offset-sm-4">
-            <div class="card">
+        <div class="col-sm-8 offset-sm-2">
+            <div class="card p-3">
 
                 <!-- Pokemon name -->
                 <div class="form-group">
@@ -10,8 +11,8 @@
                            required
                            pattern="^[a-zA-Z0-9àéèç]{1,25}$"
                            [(ngModel)]="pokemon.name" name="name"
-                           #name="ngModel">
-
+                           #name="ngModel"><!-- name stocke un champ du formulaire -->
+                    <!-- pristine : pas encore eu d'interaction avec le champ -->
                     <div [hidden]="name.valid || name.pristine"
                          class="card-panel red accent-1">
                         Le nom du pokémon est requis (1-25).
@@ -48,21 +49,22 @@
 
                 <!-- Pokemon types -->
                 <form class="form-group">
-                    <label class="form-label" for="types">Types</label>
+                    <label class="form-label" for="type">Types</label>
                     <p *ngFor="let type of types">
+                        <input type="checkbox"
+                               class="filled-in"
+                               id="type"
+                               [value]="type"
+                               [checked]="hasType(type)"
+                               [disabled]="!isTypesValid(type)"
+                               (change)="selectType($event, type)"
+                        />
                         <label>
-                            <input type="checkbox"
-                                   class="filled-in"
-                                   id="{{ type }}"
-                                   [value]="type"
-                                   [checked]="hasType(type)"
-                                   [disabled]="!isTypesValid(type)"
-                                   (change)="selectType($event, type)"/>
                             <span [attr.for]="type">
-                <div class="{{ type | pokemonTypeColor }}">
-                  {{ type }}
-                </div>
-              </span>
+                                <button class="{{ type | pokemonTypeColor }} mx-3">
+                                  {{ type }}
+                                </button>
+                            </span>
                         </label>
                     </p>
                 </form>
@@ -72,8 +74,10 @@
                 <div class="section center">
                     <button type="submit"
                             class="btn btn-primary"
-                            [disabled]="!pokemonForm.form.valid">
-                        Valider</button>
+                            [disabled]="!pokemonForm.form.valid"
+                    >
+                        Valider
+                    </button>
                 </div>
 
             </div>

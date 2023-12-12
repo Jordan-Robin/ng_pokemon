@@ -2,12 +2,20 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PokemonService} from "../pokemon.service";
 import {Pokemon} from "../../pokemon";
 import {Router} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {PokemonTypeColorPipe} from "../../pokemon-type-color.pipe";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-pokemon-form',
   standalone: true,
-  imports: [],
-  templateUrl: './pokemon-form.component.html'
+  imports: [
+    FormsModule,
+    PokemonTypeColorPipe,
+    CommonModule
+  ],
+  templateUrl: './pokemon-form.component.html',
+  styleUrls: ['./pokemon-form.component.css']
 })
 export class PokemonFormComponent implements OnInit {
 
@@ -38,6 +46,19 @@ export class PokemonFormComponent implements OnInit {
   onSubmit() {
     console.log("Submit form !");
     this.router.navigate(['/pokemon', this.pokemon.id]);
+  }
+
+  isTypesValid( type: string ): boolean {
+
+    if ( this.pokemon.types.length == 1 && this.hasType(type) ) {
+      return false;
+    }
+
+    if ( this.pokemon.types.length > 2 && !this.hasType(type) ) {
+      return false;
+    }
+
+    return true;
   }
 
 }
